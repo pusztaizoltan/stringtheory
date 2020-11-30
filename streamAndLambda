@@ -1,0 +1,99 @@
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+class Scratch {
+
+    public static void main(String[] args) {
+        String[] testS = { "Gsgfg", "ddd", "Zpeek",
+                           "ddshd", "sgffZpeek" , "sdgdsfddd",
+                           "pedfggfgek", "Zpeek", "ddshd", };
+        int[] testI1 = { 30, 4, 2, 111, 3, 1, 5, 25 };
+        int[] testI2 = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+
+//        System.out.println(joinToString(testI1));
+//        Arrays.stream(sortByLength(testS, -1)).forEach(i -> System.out.print(i + " "));
+//        System.out.println();
+//        System.out.println(squareSum(testI));
+//        System.out.println(sumStream(testI));
+//        System.out.println(avgStream(testI));
+//        Arrays.stream(add1Stream(testI)).forEach(i -> System.out.print(i + " "));
+//        System.out.println();
+//        Arrays.stream(upperCase(testS)).forEach(i -> System.out.print(i + " "));
+//        System.out.println();
+//        Arrays.stream(filterStream(testS)).forEach(i -> System.out.print(i + " "));
+//        System.out.println();
+//        System.out.println(Arrays.toString(testS));
+
+    }
+
+    public static int[] addArrays(int[] a1, int[] a2) {
+        // add two array element wise iterate trough index
+        return IntStream.range(0, a1.length)
+                        .mapToObj(i -> a1[i] + a2[i])
+                        .mapToInt(a -> a)
+                        .toArray();
+    }
+
+    public static String joinToString(int[] ii) {
+        //join any string and or number to string
+        return Arrays.stream(ii)
+                     .mapToObj(i -> "" + i)
+                     .toString();
+    }
+
+    public static String[] sortByLength(String[] strs, int order) {
+        // order: +1 ascending sort; order -1 descending sort
+        return Arrays.stream(strs)
+                     .sorted((s1, s2) -> (s1.length() - s2.length()) * order )
+                     .toArray(String[]::new);
+    }
+
+    public static int minStream(int[] integers) {
+        return Arrays.stream(integers)
+                     .min()
+                     .getAsInt();
+    }
+
+    public static int sumStream(int[] integers) {
+        return Arrays.stream(integers)
+                     .sum();
+    }
+
+    public static double avgStream(int[] integers) {
+        return Arrays.stream(integers)
+                     .average()
+                     .getAsDouble();
+    }
+
+    public static int[] add1Stream(int[] integers) {
+        return Arrays.stream(integers)
+                     .map(i -> i + 1)
+                     .toArray();
+    }
+
+    public static String[] upperCase(String[] strings) {
+        return Arrays.stream(strings)
+                     .map(s -> s.toUpperCase())  // or .map(String::toUpperCase)
+                     .toArray(String[]::new);
+    }
+
+    public static String[] filterStream(String[] strings) {
+        return  Arrays.stream(strings)
+                      .filter(s -> s.startsWith("G"))
+                      .filter(s -> s.length() > 3)
+                      .toArray(String[]::new);
+    }
+
+    public static int squareSum(int[] n){
+        return Arrays.stream(n).map(i -> i * i).sum();
+    }
+
+    public static void printFilter(String[] strs) {
+        Arrays.stream(strs)
+              .map(String::toUpperCase) // or .map(str ->str.toUpperCase())
+              .sorted()
+              .forEach(System.out::println);  //or .forEach( i -> System.out.println(i));
+    }
+}
+
